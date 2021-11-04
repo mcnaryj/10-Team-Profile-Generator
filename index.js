@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const Employee = require('./Employee');
+const Employee = require('./lib/Employee');
 const Manager = require('./Manager');
 const Engineer = require('./Engineer');
 const Intern = require('./Intern');
@@ -8,8 +8,35 @@ const fs = require('fs');
 const generateProfile = require('./generateProfile.js');
 // installed jest, inquirer and express
 
+const employeeSet = [];
+
+function managerQueries() {
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "mngrName",
+            message: "What is the manager's name?"
+        },
+        {
+            type: "input",
+            name: "mngrID",
+            message: "What is the manager's id?"
+        },
+        {
+            type: "input",
+            name: "mngrEmail",
+            message: "What is the manager's email?"
+        },
+        {
+            type: "input",
+            name: "mngrOffice",
+            message: "What's the manager's office number?"
+        },
+
+    ])
 
 
+}
 // so we want to build to build a class called 'Employee', that has the properties of name, id and email.
 // within the class, we want to call the methods get name, get id and get email
 // using the three of them, we can create a method called 'Get Roll', which will returns that they are an employee
