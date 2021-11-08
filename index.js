@@ -26,7 +26,7 @@ function employeeQuestions() {
             } else if (answers.job === "Engineer") {
                 promptEngineer();
             } else {
-                generateProfile.generateProfile(employeePool);
+                generate.generateProfile(employeePool);
                 console.log("Dream team assembled")
             }
         })
@@ -59,14 +59,13 @@ function managerQueries() {
 
         .then((answers) => {
             const manager = new Manager(answers.managerName, answers.mgnrID, answers.managerEmail, answers.managerOfficeNo);
-            generateProfile.createHTML(employeeInfo);
             console.log("Your team is stacked")
-            promptContinue();
+            employeeQuestions();
 
         })
 };
 
-function engineerPrompts() {
+function promptEngineer() {
     return inquirer.prompt([
         {
             type: "input",
@@ -92,10 +91,42 @@ function engineerPrompts() {
 
 
         .then((answers) => {
-            const manager = new Manager(answers.managerName, answers.mgnrID, answers.managerEmail, answers.managerOfficeNo);
-            generateProfile.createHTML(employeeInfo);
-            console.log("Your team is stacked")
-            promptContinue();
+            const manager = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+            console.log("Look at all them engineers")
+            employeeQuestions();
+
+        })
+};
+
+function promptIntern() {
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "internName",
+            message: "What is the engineer's name?"
+        },
+        {
+            type: "input",
+            name: "internId",
+            message: "What is the engineer's id?"
+        },
+        {
+            type: "input",
+            name: "internEmail",
+            message: "What is the engineer's email?"
+        },
+        {
+            type: "input",
+            name: "internSchool",
+            message: "What's the name of the intern's school?"
+        },
+    ])
+
+
+        .then((answers) => {
+            const manager = new Engineer(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+            console.log("Look at all them interns")
+            employeeQuestions();
 
         })
 };
