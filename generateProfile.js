@@ -1,5 +1,18 @@
 const fs = require('fs');
 
+const generateManager = Manager => {
+    return `
+    <div>
+    <div class="manager">
+    <h3>${Manager.name}</h3>
+    <h3>${Manager.}</h3>
+    </div>
+
+    
+    
+    `
+}
+// building the html body to display the employees for a given team
 module.exports = (employeePool) => {
     const { manager, intern, ...engineer } = employeePool;
     return `<!DOCTYPE html>
@@ -28,11 +41,5 @@ module.exports = (employeePool) => {
     
     `;
 };
-// adding a badge to the top of the readme (line 49)
-// To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the syntax on line 76-78:
-// ```md
-// ![alt text](assets / images / screenshot.png)
-//     ```
 
-// exporting the function
 module.exports = generateProfile;
