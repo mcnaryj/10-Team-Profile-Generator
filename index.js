@@ -7,51 +7,63 @@ const Intern = require('./Intern');
 const fs = require('fs');
 const generateProfile = require('./generateProfile.js');
 // installed jest, inquirer and express
+managerQueries()
 
-const employeeSet = [];
+const employeePool = [];
+
+function employeeQuestions() {
+    return inquirer.prompt([
+        {
+            type: "list",
+            name: "job",
+            choices: ["Intern", "Engineer", "Finish building my team."]
+        },
+    ])
+        .then((answers) => {
+            if (answers.job === "Intern") {
+                promptInternQuestions();
+            } else if (answers.job === "Engineer") {
+                promptEngineer();
+            } else {
+                generateProfile.generateProfile(employeePool);
+                console.log("Dream team assembled")
+            }
+        })
+};
 
 function managerQueries() {
     return inquirer.prompt([
         {
             type: "input",
-            name: "mngrName",
+            name: "managerName",
             message: "What is the manager's name?"
         },
         {
             type: "input",
-            name: "mngrID",
+            name: "managerID",
             message: "What is the manager's id?"
         },
         {
             type: "input",
-            name: "mngrEmail",
+            name: "managerEmail",
             message: "What is the manager's email?"
         },
         {
             type: "input",
-            name: "mngrOffice",
+            name: "managerOfficeNo",
             message: "What's the manager's office number?"
         },
-
     ])
 
 
-}
-// so we want to build to build a class called 'Employee', that has the properties of name, id and email.
-// within the class, we want to call the methods get name, get id and get email
-// using the three of them, we can create a method called 'Get Roll', which will returns that they are an employee
-// The first class is an `Employee` parent class with the following properties and methods:
-// * `name`
-// * `id`
-// * `email`
-// * `getName()`
-// * `getId()`
-// * `getEmail()`
-// * `getRole()`&mdash;returns `'Employee'`
+        .then((answers) => {
+            const manager = new Manager(answers.managerName, answers.mgnrID, answers.managerEmail, answers.managerOfficeNo);
+            generateProfile.createHTML(employeeInfo);
+            console.log("Your team is stacked")
+            promptContinue();
 
-
-
-// getName()
+        })
+};
 
 
 // and a function to write the README file:
@@ -61,6 +73,11 @@ function writeToFile(data) {
         err ? console.log(err) : console.log('Team Profile Generator Created!')
     );
 }
+
+// function engineerPrompts() {
+
+
+// }
 
 // we want a function to start the inquirer
 // function init() {
