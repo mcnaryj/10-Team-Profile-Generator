@@ -5,7 +5,7 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 const fs = require('fs');
-const generateProfile = require('./generateProfile.js');
+const generate = require('./generateProfile');
 // installed jest, inquirer and express
 
 managerQueries()
@@ -22,7 +22,7 @@ function employeeQuestions() {
     ])
         .then((answers) => {
             if (answers.job === "Intern") {
-                promptInternQuestions();
+                promptIntern();
             } else if (answers.job === "Engineer") {
                 promptEngineer();
             } else {
@@ -59,8 +59,11 @@ function managerQueries() {
 
         .then((answers) => {
             const manager = new Manager(answers.managerName, answers.mgnrID, answers.managerEmail, answers.managerOfficeNo);
+            employeePool.push(manager)
             console.log("Your team is stacked")
             employeeQuestions();
+
+
 
         })
 };
@@ -91,9 +94,12 @@ function promptEngineer() {
 
 
         .then((answers) => {
-            const manager = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+            const engineer = new Engineer(answers.engineerName, answers.engineerId, answers.engineerEmail, answers.engineerGithub);
+            employeePool.push(engineer)
+
             console.log("Look at all them engineers")
             employeeQuestions();
+
 
         })
 };
@@ -103,17 +109,17 @@ function promptIntern() {
         {
             type: "input",
             name: "internName",
-            message: "What is the engineer's name?"
+            message: "What is the intern's name?"
         },
         {
             type: "input",
             name: "internId",
-            message: "What is the engineer's id?"
+            message: "What is the intern's id?"
         },
         {
             type: "input",
             name: "internEmail",
-            message: "What is the engineer's email?"
+            message: "What is the intern's email?"
         },
         {
             type: "input",
@@ -124,33 +130,13 @@ function promptIntern() {
 
 
         .then((answers) => {
-            const manager = new Engineer(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+            employeePool.push(intern)
+
             console.log("Look at all them interns")
             employeeQuestions();
 
         })
 };
-// and a function to write the README file:
-function writeToFile(data) {
-    const testPg = generateProfile(data);
-    fs.writeFile('test.html', testPg, (err) =>
-        err ? console.log(err) : console.log('Team Profile Generator Created!')
-    );
-}
-
-// function engineerPrompts() {
 
 
-// }
-
-// we want a function to start the inquirer
-// function init() {
-//     inquirer
-//         .prompt(employeeInfo)
-//         .then((data) => {
-//             console.log(data);
-//             writeToFile(data);
-//         })
-// }
-
-// init();
