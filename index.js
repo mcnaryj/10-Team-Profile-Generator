@@ -5,14 +5,13 @@ const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
 const fs = require('fs');
-const generate = require('./generateProfile');
+const generate = require('./src/generateProfile');
 // installed jest, inquirer and express
 
-managerQueries()
 
 const employeePool = [];
 
-function employeeQuestions() {
+function nextEmpPrompt() {
     return inquirer.prompt([
         {
             type: "list",
@@ -26,13 +25,13 @@ function employeeQuestions() {
             } else if (answers.job === "Engineer") {
                 promptEngineer();
             } else {
-                generate.generateProfile(employeePool);
+                generate.generateHTML(employeePool);
                 console.log("Dream team assembled")
             }
         })
 };
 
-function managerQueries() {
+function promptManager() {
     return inquirer.prompt([
         {
             type: "input",
@@ -56,14 +55,48 @@ function managerQueries() {
         },
     ])
 
+        .then((managerData) => {
+
+            const { name, id, email, officeNumber } = managerData;
+            employee = new Manager(name, id, email, officeNumber);
+            let role = { role: "Manager" };
+            nextEmpPrompt();
+            return { ...managerData, ...role };
+        });
+
+
+};
+function promptIntern() {
+    return inquirer.prompt([
+        {
+            type: "input",
+            name: "internName",
+            message: "What is the intern's name?"
+        },
+        {
+            type: "input",
+            name: "internId",
+            message: "What is the intern's id?"
+        },
+        {
+            type: "input",
+            name: "internEmail",
+            message: "What is the intern's email?"
+        },
+        {
+            type: "input",
+            name: "internSchool",
+            message: "What's the name of the intern's school?"
+        },
+    ])
+
 
         .then((answers) => {
-            const manager = new Manager(answers.managerName, answers.mgnrID, answers.managerEmail, answers.managerOfficeNo);
-            employeePool.push(manager)
-            console.log("Your team is stacked")
-            employeeQuestions();
+            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
+            employeePool.push(intern)
 
-
+            console.log("Look at all them interns")
+            nextEmpPrompt();
 
         })
 };
@@ -98,45 +131,21 @@ function promptEngineer() {
             employeePool.push(engineer)
 
             console.log("Look at all them engineers")
-            employeeQuestions();
+            nextEmpPrompt();
 
 
         })
 };
 
-function promptIntern() {
-    return inquirer.prompt([
-        {
-            type: "input",
-            name: "internName",
-            message: "What is the intern's name?"
-        },
-        {
-            type: "input",
-            name: "internId",
-            message: "What is the intern's id?"
-        },
-        {
-            type: "input",
-            name: "internEmail",
-            message: "What is the intern's email?"
-        },
-        {
-            type: "input",
-            name: "internSchool",
-            message: "What's the name of the intern's school?"
-        },
-    ])
 
+const writeHtml = (employeePool) => {
+    const htmlContent = employeePool;
+    fs.writeFile("TESTHTML.html", htmlContent, (err) =>
+        err ? console.log(err) : console.log("Success!")
+    );
 
-        .then((answers) => {
-            const intern = new Intern(answers.internName, answers.internId, answers.internEmail, answers.internSchool);
-            employeePool.push(intern)
-
-            console.log("Look at all them interns")
-            employeeQuestions();
-
-        })
+    return;
 };
+// Function call to initalize app
 
-
+promptManager()
