@@ -25,7 +25,7 @@ function nextEmpPrompt() {
             } else if (answers.job === "Engineer") {
                 promptEngineer();
             } else {
-                generate.generateHTML(employeePool);
+                generate.createHTML(employeePool);
                 console.log("Dream team assembled")
             }
         })
@@ -55,15 +55,12 @@ function promptManager() {
         },
     ])
 
-        .then((managerData) => {
+        .then((answers) => {
+            const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOffice);
 
-            const { name, id, email, officeNumber } = managerData;
-            employee = new Manager(name, id, email, officeNumber);
-            let role = { role: "Manager" };
+            employeePool.push(manager)
             nextEmpPrompt();
-            return { ...managerData, ...role };
-        });
-
+        })
 
 };
 function promptIntern() {

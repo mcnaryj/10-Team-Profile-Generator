@@ -13,14 +13,11 @@ var htmlContent = `<!DOCTYPE html>
 <body>
     <header>My Team</header>
     
-<div class="row row-cols-1 row-cols-md-2">\n`
+<div>\n`
 
 
-//creating new cards
-const generateHTML = (employeePool) => {
-    //loop through employee array and create a card
-    //each card within a backtick, take all of that content and do += to that variable we have above
-    //at the end of that loop, += the ending code
+
+const createHTML = (employeePool) => {
     employeePool.forEach(element => {
         htmlContent += ` <div>
     <div>
@@ -42,7 +39,7 @@ const generateHTML = (employeePool) => {
         if (element.getRole() === "Manager") {
             htmlContent += `Office Number: ${element.getOfficeNumber()}</li>\n`
         } else if (element.getRole() === "Engineer") {
-            htmlContent += `<li>GitHub Profile: ${element.getGitHub()}</a></li>\n`
+            htmlContent += `<li>GitHub Profile: ${element.getGithub()}</a></li>\n`
         } else if (element.getRole() === "Intern") {
             htmlContent += `<li>School: ${element.getSchool()}</li>\n`
         }
@@ -60,5 +57,5 @@ const generateHTML = (employeePool) => {
 
 
 module.exports = {
-    generateHTML,
+    createHTML,
 };
