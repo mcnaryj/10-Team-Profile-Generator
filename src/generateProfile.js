@@ -16,7 +16,6 @@ var htmlContent = `<!DOCTYPE html>
 <div>\n`
 
 
-
 const createHTML = (employeePool) => {
     employeePool.forEach(element => {
         htmlContent += ` <div>
@@ -46,11 +45,9 @@ const createHTML = (employeePool) => {
         htmlContent
     });
 
-    htmlContent += `</div></body></html>`
-
+    htmlContent
     fs.writeFileSync('./src/sampleHTML.html', htmlContent);
-
-    console.log("Nice job creating your team. Head over to sampleHTML.html.")
+    console.log("Your team has been successfully created. Head over to sampleHTML.html.")
 
 }
 

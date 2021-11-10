@@ -63,6 +63,8 @@ function promptManager() {
         })
 
 };
+
+// intern prompts using inquirer
 function promptIntern() {
     return inquirer.prompt([
         {
@@ -98,6 +100,7 @@ function promptIntern() {
         })
 };
 
+// engineer prompts using inquirer
 function promptEngineer() {
     return inquirer.prompt([
         {
@@ -134,15 +137,5 @@ function promptEngineer() {
         })
 };
 
-
-const writeHtml = (employeePool) => {
-    const htmlContent = employeePool;
-    fs.writeFile("TESTHTML.html", htmlContent, (err) =>
-        err ? console.log(err) : console.log("Success!")
-    );
-
-    return;
-};
 // Function call to initalize app
-
 promptManager()
