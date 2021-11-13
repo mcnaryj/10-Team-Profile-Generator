@@ -1,7 +1,18 @@
-.card {
-    display: block;
+.card-body {
+    display: flexbox;
+    flex-direction: column;
     flex-wrap: wrap;   
     width: 10%;
     padding: 0%;
 }
 
+header {
+    display: flex;
+    height: 10rem;
+
+    background-color: blue;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}

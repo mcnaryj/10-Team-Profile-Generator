@@ -12,15 +12,12 @@ var htmlContent = `<!DOCTYPE html>
 </head>
 <body>
     <header>My Team</header>
-    
-<div>\n`
-
-
+    <div class="row row-cols-3 row-cols-md-2">\n`
 const createHTML = (employeePool) => {
     employeePool.forEach(element => {
-        htmlContent += `<div>
-    <div>
-      <div>
+        htmlContent += `</div>
+    <div class="card">
+        <div class="card-header">
             ${element.getName()} <br>\n`
         if (element.getRole() === "Manager") {
             htmlContent
@@ -30,20 +27,23 @@ const createHTML = (employeePool) => {
             htmlContent
         }
         htmlContent += ` ${element.getRole()}
-      </div>
-      <div>
-              <ul>
-                <li>ID: ${element.getId()}</li>
-                <li>Email:<a href = "mailto: ${element.getEmail()}"> ${element.getEmail()}</a></li>\n`
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">ID: ${element.getId()}</li>
+            <li class="list-group-item">Email:<a href="mailto: ${element.getEmail()}"> ${element.getEmail()}</a></li>\n`
         if (element.getRole() === "Manager") {
-            htmlContent += `<li>Office Number: ${element.getOfficeNumber()}</li>\n`
+            htmlContent += `<li class="list-group-item">Office Number: ${element.getOfficeNumber()}</li>\n`
         } else if (element.getRole() === "Engineer") {
-            htmlContent += `<li> GitHub Profile: ${element.getGithub()}</a></li>\n`
+            htmlContent += `<li class="list-group-item"> GitHub Profile: ${element.getGithub()}</a></li>\n`
         } else if (element.getRole() === "Intern") {
-            htmlContent += `<li> School: ${element.getSchool()}</li>\n`
+            htmlContent += `<li class="list-group-item"> School: ${element.getSchool()}</li>\n`
         }
     });
-    htmlContent += `</div>`
+    htmlContent += `</ul>
+    </div >
+    </div > `
+
     fs.writeFileSync('./src/sampleHTML.html', htmlContent);
     console.log("Your team has been successfully created. Head over to sampleHTML.html.")
 
