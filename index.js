@@ -1,16 +1,21 @@
+const fs = require('fs');
+
 const inquirer = require('inquirer');
+// classes and subclasses to contain the info that will be passed through to the createHTML fxn
 const Employee = require('./lib/Employee');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern');
 
-const fs = require('fs');
-const generate = require('./src/generateProfile');
 // installed jest, inquirer and express
 
-
+// empty array to contain the inputs from each series of prompts
 const employeePool = [];
 
+// importing generateProfile.js
+const generate = require('./src/generateProfile');
+
+// prompt to cycle through the employee types
 function nextEmpPrompt() {
     return inquirer.prompt([
         {
@@ -31,6 +36,7 @@ function nextEmpPrompt() {
         })
 };
 
+// manager prompts using inquirer
 function promptManager() {
     return inquirer.prompt([
         {
