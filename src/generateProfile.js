@@ -44,10 +44,10 @@ const createHTML = (employeePool) => {
         htmlContent += `</ul>
         </div>
     </div>     
-    </div >
-    </div > 
-    </main > 
-    </body > `
+    </div>
+    </div> 
+    </main> 
+    </body> `
 
 
     });
