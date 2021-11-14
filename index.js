@@ -56,13 +56,13 @@ function promptManager() {
         },
         {
             type: "input",
-            name: "managerOfficeNo",
+            name: "officeNumber",
             message: "What's the manager's office number?"
         },
     ])
 
         .then((answers) => {
-            const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.managerOffice);
+            const manager = new Manager(answers.managerName, answers.managerID, answers.managerEmail, answers.officeNumber);
 
             employeePool.push(manager)
             nextEmpPrompt();
