@@ -31,7 +31,7 @@ function nextEmpPrompt() {
                 promptEngineer();
             } else {
                 generate.createHTML(employeePool);
-                console.log("Dream team assembled")
+                console.log("Employee profiles complete!")
             }
         })
 };
