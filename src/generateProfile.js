@@ -13,7 +13,7 @@ let htmlContent = `<!DOCTYPE html>
 <body>
     <header>My Team</header>
     <main>
-    `
+    <div class="row row-cols-1 row-cols-md-2">`
 const createHTML = (employeePool) => {
     employeePool.forEach(element => {
         htmlContent += `<div class="col mb-4">
@@ -29,24 +29,25 @@ const createHTML = (employeePool) => {
         }
         htmlContent += ` ${element.getRole()}
         </div>
-        <div class="card-body">
+        <div class="card-body>
             <ul class="list-group">
-            <li class="list-group-item">>ID: ${element.getId()}</li>
-            <li class="list-group-item">Email:<a href="mailto: ${element.getEmail()}"> ${element.getEmail()}</a></li>\n`
+                <li class="list-group-item">ID: ${element.getId()}</li>
+                <li class="list-group-item">Email:<a href="mailto: ${element.getEmail()}"> ${element.getEmail()}</a></li>\n`
         if (element.getRole() === "Manager") {
             htmlContent += `<li class="list-group-item">Office Number: ${element.getOfficeNumber()}</li>\n`
-        } else if (element.getRole() === "Engineer") {
-            htmlContent += `<li class="list-group-item"> GitHub Profile: ${element.getGithub()}</a></li>\n`
         } else if (element.getRole() === "Intern") {
             htmlContent += `<li class="list-group-item"> School: ${element.getSchool()}</li>\n`
+        } else if (element.getRole() === "Engineer") {
+            htmlContent += `<li class="list-group-item"> GitHub Profile: ${element.getGithub()}</a></li>\n`
+
         }
         htmlContent += `</ul>
-    </div>
+        </div>
     </div>     
-    </div>
-    </div>
-    </main> 
-    </body>`
+    </div >
+    </div > 
+    </main > 
+    </body > `
 
 
     });
@@ -54,48 +55,6 @@ const createHTML = (employeePool) => {
     console.log("Your team has been successfully created. Head over to sampleHTML.html.")
 }
 
-// const createHTML = (employeePool) => {
-//     //loop through employee array and create a card
-//     //each card within a backtick, take all of that content and do += to that variable we have above
-//     //at the end of that loop, += the ending code
-//     employeePool.forEach(element => {
-//         htmlText += ` <div class="col mb-4">
-//         <div class="card">
-//           <div class="card-header">
-//                 ${element.getName()} <br>\n`
-//         if (element.getRole() === "Manager") {
-//             htmlText += `<i class="fas fa-mug-hot"></i>`
-//         } else if (element.getRole() === "Engineer") {
-//             htmlText += `<i class="fas fa-glasses"></i>`
-//         } else if (element.getRole() === "Intern") {
-//             htmlText += `<i class="fas fa-user-graduate"></i>`
-//         }
-//         htmlText += ` ${element.getRole()}
-//           </div>
-//                 <div class="card-body">
-//                   <ul class="list-group list-group-flush">
-//                     <li class="list-group-item">ID: ${element.getId()}</li>
-//                     <li class="list-group-item">Email:<a href = "mailto: ${element.getEmail()}"> ${element.getEmail()}</a></li>\n`
-//         if (element.getRole() === "Manager") {
-//             htmlText += `<li class="list-group-item">Office Number: ${element.getOfficeNumber()}</li>\n`
-//         } else if (element.getRole() === "Engineer") {
-//             htmlText += `<li class="list-group-item">GitHub Username: <a href="https://github.com/${element.getGithub()}"`
-//         } else if (element.getRole() === "Intern") {
-//             htmlText += `<li class="list-group-item">School: ${element.getSchool()}</li>\n`
-//         }
-//         htmlText += `</ul>
-//         </div>
-//         </div>
-//         </div>\n`
-//     });
-
-//     htmlText += `</div></body></html>` 
-
-//     fs.writeFileSync('./dist/sample.html', htmlText);
-
-//     console.log("Your team is now on display, navigate to the folder 'dist' and then click 'index.html'.  ")
-
-// }
 module.exports = {
     createHTML,
 };
