@@ -29,7 +29,7 @@ const createHTML = (employeePool) => {
         }
         htmlContent += ` ${element.getRole()}
         </div>
-        <div class="card-body>
+        <div class="card-body">
             <ul class="list-group">
                 <li class="list-group-item">ID: ${element.getId()}</li>
                 <li class="list-group-item">Email:<a href="mailto: ${element.getEmail()}"> ${element.getEmail()}</a></li>\n`
@@ -51,8 +51,8 @@ const createHTML = (employeePool) => {
 
 
     });
-    fs.writeFileSync('./dist/sampleHTML.html', htmlContent);
-    console.log("Your team has been successfully created. Head over to sampleHTML.html.")
+    fs.writeFileSync('./dist/teamprofile.html', htmlContent);
+    console.log("Your team has been successfully created. Head over to teamprofile.html.")
 }
 
 module.exports = {

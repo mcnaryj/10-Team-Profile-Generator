@@ -58,10 +58,13 @@ This application is intended for users who want to have a team profile generator
 
 ## Tests
 
-Install npm and select the assets/js directory. From there, run node index.js, which will initiate a series of prompts for the user to complete, pertaining to the relevant information contained in the profile generate. Once the user fills out each form, the profile generator will be written to the dist folder.
+Install npm. From there, run node index.js, which will initiate a series of prompts for the user to complete, pertaining to the relevant information contained in the profile to be generated. Once the user fills out each form, the profile generator will be written to the dist folder.
 
-[Youtube link demonstrating the functionality of the readme generator in node.js](https://www.youtube.com/watch?v=SN3RN4afpis&feature=youtu.be)
+[Youtube link demonstrating the functionality of the readme generator in node.js](https://www.youtube.com/watch?v=B3NqbtQPHE8&feature=youtu.be)
 
+## Notes
+
+It took me forever to realize I needed create the dist folder in order for the CSS to load.
 
 ## Questions
 Please check out my [github profile](github.com/mcnaryj/10-Team-Profile-Generator) for more questions on the methodology and what have you.
